@@ -20,4 +20,4 @@ const registerAdmin = async (req, res) => {
   }
 };
 
-export{}
+export { signinAdmin, registerAdmin };

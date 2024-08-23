@@ -1,6 +1,7 @@
 import User from "../models/users.js";
 import bcrypt from "bcrypt";
 import { errorHandler } from "../util/errorHandler.js";
+import { createToken } from "../util/createToken.js";
 //Creates users
 const createUser = async (req, res, next) => {
   const { username, password, email } = req.body;
@@ -37,7 +38,10 @@ const signinUser = async (req, res, next) => {
         .json({ error: "Username or password is incorrect" });
     }
 
-    res.status(200).json("User has logged in successfully");
+    if (validUser && validPassword) {
+      const token = createToken(res, validUser._id, process.env.JWT_SECRET);
+      res.status(200).json("User has logged in successfully");
+    }
   } catch (err) {
     next(err);
   }

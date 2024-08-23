@@ -4,6 +4,7 @@ dotenv.config();
 
 import { connectDB } from "./db/connectDB.js";
 import userRoutes from "./routes/userRoute.js";
+import adminRoutes from "./routes/adminRoute.js";
 //Create app from express
 const app = express();
 
@@ -18,6 +19,7 @@ app.use(express.json());
 
 //Routes
 app.use("/", userRoutes);
+app.use("/", adminRoutes);
 
 //Start server
 app.listen(PORT, () => {
