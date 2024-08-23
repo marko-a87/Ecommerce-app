@@ -3,7 +3,7 @@ import dotenv from "dotenv";
 dotenv.config();
 
 import { connectDB } from "./db/connectDB.js";
-
+import userRoutes from "./routes/userRoute.js";
 //Create app from express
 const app = express();
 
@@ -13,9 +13,11 @@ const PORT = process.env.PORT || 4000;
 //Connects to database
 connectDB();
 
-app.get("/", (req, res) => {
-  res.send("hello world");
-});
+//Parses json requests
+app.use(express.json());
+
+//Routes
+app.use("/", userRoutes);
 
 //Start server
 app.listen(PORT, () => {

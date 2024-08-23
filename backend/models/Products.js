@@ -10,12 +10,19 @@ const ProductSchema = new mongoose.Schema(
       type: Number,
       required: true
     },
-    type: {
+    category: {
+      //Category that specifies the type of product out of 4 types
+      
       type: String,
+
       required: true
     },
     quantity: {
       type: Number,
+      required: true
+    },
+    imageUrl: {
+      type: URL,
       required: true
     }
   },
